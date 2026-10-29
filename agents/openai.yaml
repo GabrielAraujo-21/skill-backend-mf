@@ -1,0 +1,6 @@
+interface:
+  display_name: "Backend MF"
+  short_description: "Laravel consultivo para projetos novos e existentes"
+  default_prompt: "Use $skill-backend-mf para avaliar meu backend, recomendar as decisões pendentes e executar a padronização autorizada com segurança."
+policy:
+  allow_implicit_invocation: true
