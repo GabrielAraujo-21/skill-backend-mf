@@ -33,4 +33,6 @@ Padronize backends Laravel 12/PHP 8.4 conforme a [especificação 1.2.0](referen
 
 Entregue decisões e fontes consultadas, classificação REUTILIZAR/ESTENDER/REFATORAR/CRIAR/INVESTIGAR MAIS, arquivos alterados, validações executadas, cobertura adiada, riscos e próximos passos. No diagnóstico, separe defeitos comprovados de hipóteses. Nunca declare produção certificada por testes locais.
 
-Esta skill inclui instruções e referências; não inclui um framework PHP, um backend pronto ou scripts de deploy. A descoberta automática permanece habilitada.
+Esta skill inclui instruções, referências e laboratórios de avaliação; não instala um backend no projeto consumidor nem fornece um starter de produção ou scripts de deploy. A descoberta automática permanece habilitada.
+
+Os aplicativos em `evaluations/` servem apenas para reproduzir testes. Suas credenciais públicas, banco descartável, portas e escolhas de arquitetura pertencem ao laboratório; não copiá-los para um projeto consumidor como defaults da skill.

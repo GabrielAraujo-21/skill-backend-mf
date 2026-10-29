@@ -1,0 +1,25 @@
+PHPUnit 11.5.57 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.4.12
+Configuration: C:\Users\HP\.codex\visualizations\2026\10\29\01a1857f-daff-7c73-b00a-42d7e928fdda\validacao-completa\backend\phpunit.xml
+
+F                                                                   1 / 1 (100%)
+
+Time: 00:06.353, Memory: 44.00 MB
+
+There was 1 failure:
+
+1) Tests\Feature\ClientesTest::test_cnpj_alfanumerico_e_normalizado
+Failed asserting that two strings are identical.
+--- Expected
++++ Actual
+@@ @@
+-'12ABC34501DE35'
++'12.abc.345/01de-35'
+
+C:\Users\HP\.codex\visualizations\2026\10\29\01a1857f-daff-7c73-b00a-42d7e928fdda\validacao-completa\backend\vendor\laravel\framework\src\Illuminate\Testing\AssertableJsonString.php:243
+C:\Users\HP\.codex\visualizations\2026\10\29\01a1857f-daff-7c73-b00a-42d7e928fdda\validacao-completa\backend\vendor\laravel\framework\src\Illuminate\Testing\TestResponse.php:880
+C:\Users\HP\.codex\visualizations\2026\10\29\01a1857f-daff-7c73-b00a-42d7e928fdda\validacao-completa\backend\tests\Feature\ClientesTest.php:73
+
+FAILURES!
+Tests: 1, Assertions: 2, Failures: 1.

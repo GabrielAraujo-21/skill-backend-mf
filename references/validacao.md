@@ -30,3 +30,11 @@ Descobrir scripts e dependências reais antes de escolher comandos. Pint/anális
 ## Avaliação executada em 29/10/2026
 
 Consulte o [relatório, evidências e reprodução](../evaluations/2026-10-29/README.md). Ele separa respostas consultivas de testes PHP/Node e documenta correções e limites; não certifica uma aplicação completa nem substitui os testes dos projetos consumidores.
+
+## Validação integrada Laravel e Vue/Vuetify
+
+[Projetos completos, dez testes Chromium, correções e reprodução](../evaluations/2026-10-29-integracao/README.md). A avaliação inclui autenticação real, SQLite, duas abas, falhas de rede e acessibilidade automatizada; os limites estão no relatório.
+
+### Controles entre requisições reais
+
+Quando o escopo inclui sessão, CSRF ou rate limiting, verificar o comportamento no runtime HTTP além do kernel de testes. O framework pode desabilitar CSRF em unit testing, e cache array pode mascarar a falta de persistência de quotas entre requisições. Usar armazenamento de controles compatível com a topologia escolhida e testar respostas negativas reais; não remover CSRF nem aumentar limites para fazer o teste passar. Isolar banco e cache dos ensaios e registrar qual controle o teste efetivamente comprovou.

@@ -1,0 +1,2 @@
+# Preservar espaços e linhas finais das saídas originais de terminal.
+*.txt -whitespace

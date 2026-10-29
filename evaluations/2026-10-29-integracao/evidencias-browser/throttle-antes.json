@@ -1,0 +1,185 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\HP\\.codex\\visualizations\\2026\\10\\29\\01a1857f-daff-7c73-b00a-42d7e928fdda\\validacao-completa\\browser\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--grep",
+      "limite de tentativas"
+    ],
+    "configFile": "C:\\Users\\HP\\.codex\\visualizations\\2026\\10\\29\\01a1857f-daff-7c73-b00a-42d7e928fdda\\validacao-completa\\browser\\playwright.config.js",
+    "rootDir": "C:/Users/HP/.codex/visualizations/2026/10/29/01a1857f-daff-7c73-b00a-42d7e928fdda/validacao-completa/browser/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/HP/.codex/visualizations/2026/10/29/01a1857f-daff-7c73-b00a-42d7e928fdda/validacao-completa/browser/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/HP/.codex/visualizations/2026/10/29/01a1857f-daff-7c73-b00a-42d7e928fdda/validacao-completa/browser/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\HP\\.codex\\visualizations\\2026\\10\\29\\01a1857f-daff-7c73-b00a-42d7e928fdda\\validacao-completa\\browser\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "C:\\Users\\HP\\.codex\\visualizations\\2026\\10\\29\\01a1857f-daff-7c73-b00a-42d7e928fdda\\validacao-completa\\browser\\tests",
+        "snapshotDir": "C:\\Users\\HP\\.codex\\visualizations\\2026\\10\\29\\01a1857f-daff-7c73-b00a-42d7e928fdda\\validacao-completa\\browser\\tests",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 120000,
+        "use": {
+          "baseURL": "http://127.0.0.1:15173",
+          "browserName": "chromium",
+          "headless": true,
+          "screenshot": "only-on-failure",
+          "trace": "off",
+          "video": "off"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "evidencias/resultado.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "integracao.spec.js",
+      "file": "integracao.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "limite de tentativas de login persiste entre requisições reais",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 15918,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected value: \u001b[32m429\u001b[39m\nReceived array: \u001b[31m[422, 422, 422, 422, 422, 422, 422, 422, 422, 422, …]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected value: \u001b[32m429\u001b[39m\nReceived array: \u001b[31m[422, 422, 422, 422, 422, 422, 422, 422, 422, 422, …]\u001b[39m\n    at C:\\Users\\HP\\.codex\\visualizations\\2026\\10\\29\\01a1857f-daff-7c73-b00a-42d7e928fdda\\validacao-completa\\browser\\tests\\integracao.spec.js:143:22",
+                    "location": {
+                      "file": "C:\\Users\\HP\\.codex\\visualizations\\2026\\10\\29\\01a1857f-daff-7c73-b00a-42d7e928fdda\\validacao-completa\\browser\\tests\\integracao.spec.js",
+                      "column": 22,
+                      "line": 143
+                    },
+                    "snippet": "  141 |     resultados.push((await requisitar(page, '/api/login', 'POST', { email: 'ausente@example.test', password: 'incorreta' })).status);\n  142 |   }\n> 143 |   expect(resultados).toContain(429);\n      |                      ^\n  144 | });\n  145 |\n  146 | test('logout em outra aba limpa dados e reconcilia sessão já revogada', async ({ page, context }) => {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\HP\\.codex\\visualizations\\2026\\10\\29\\01a1857f-daff-7c73-b00a-42d7e928fdda\\validacao-completa\\browser\\tests\\integracao.spec.js",
+                        "column": 22,
+                        "line": 143
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected value: \u001b[32m429\u001b[39m\nReceived array: \u001b[31m[422, 422, 422, 422, 422, 422, 422, 422, 422, 422, …]\u001b[39m\n\n  141 |     resultados.push((await requisitar(page, '/api/login', 'POST', { email: 'ausente@example.test', password: 'incorreta' })).status);\n  142 |   }\n> 143 |   expect(resultados).toContain(429);\n      |                      ^\n  144 | });\n  145 |\n  146 | test('logout em outra aba limpa dados e reconcilia sessão já revogada', async ({ page, context }) => {\n    at C:\\Users\\HP\\.codex\\visualizations\\2026\\10\\29\\01a1857f-daff-7c73-b00a-42d7e928fdda\\validacao-completa\\browser\\tests\\integracao.spec.js:143:22"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-29T12:02:27.405Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\HP\\.codex\\visualizations\\2026\\10\\29\\01a1857f-daff-7c73-b00a-42d7e928fdda\\validacao-completa\\browser\\test-results\\integracao-limite-de-tenta-cd64b-ste-entre-requisições-reais\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\HP\\.codex\\visualizations\\2026\\10\\29\\01a1857f-daff-7c73-b00a-42d7e928fdda\\validacao-completa\\browser\\test-results\\integracao-limite-de-tenta-cd64b-ste-entre-requisições-reais\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\HP\\.codex\\visualizations\\2026\\10\\29\\01a1857f-daff-7c73-b00a-42d7e928fdda\\validacao-completa\\browser\\tests\\integracao.spec.js",
+                    "column": 22,
+                    "line": 143
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "961093ee77db3f32c0ca-347b8baf29c131f6d17b",
+          "file": "integracao.spec.js",
+          "line": 136,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-29T12:02:23.143Z",
+    "duration": 21891.016,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "cenario": "Defeito sintético de legado: CNPJ não normalizado",
+  "origem": "Fixture deliberadamente preparada, não defeito descoberto em produção ou nas instruções.",
+  "antes_exit": 1,
+  "depois_exit": 0,
+  "rota_sha256_antes": "936055c3298d13d64f476a79478abd78a07fb5547c2c0e01a7f076e718bdbf60",
+  "rota_sha256_depois": "936055c3298d13d64f476a79478abd78a07fb5547c2c0e01a7f076e718bdbf60",
+  "alteracao": "Somente action: normalização CNPJ sem mudar URI/id/campos/pastas/versões."
+}

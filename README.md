@@ -204,8 +204,12 @@ Na raiz deste repositório, execute `python scripts/validar_skill.py`. O verific
 
 Os cenários em [validação](references/validacao.md) são um roteiro de avaliação comportamental; sua presença não significa que foram executados.
 
-Este repositório contém instruções e especificação, não uma aplicação Laravel pronta. Componentes como `CompatBanco`, `RespostaApi`, `TenantAtual` e `make:crud` são contratos a localizar ou implementar quando autorizados. A instalação não aplica migrations, não configura infraestrutura e não altera automaticamente o backend. Guardrails instrucionais não substituem permissões do ambiente, revisão humana e controles técnicos.
+Este repositório contém instruções, especificação e laboratórios descartáveis de avaliação; não fornece uma aplicação Laravel pronta para uso operacional. Componentes como `CompatBanco`, `RespostaApi`, `TenantAtual` e `make:crud` são contratos a localizar ou implementar quando autorizados. A instalação não aplica migrations, não configura infraestrutura e não altera automaticamente o backend. Guardrails instrucionais não substituem permissões do ambiente, revisão humana e controles técnicos.
 
 ## Avaliação executada em 29/10/2026
 
 Consulte o [relatório, evidências e reprodução](evaluations/2026-10-29/README.md). Ele separa respostas consultivas de testes PHP/Node e documenta correções e limites; não certifica uma aplicação completa nem substitui os testes dos projetos consumidores.
+
+## Validação integrada Laravel e Vue/Vuetify
+
+[Projetos completos, dez testes Chromium, correções e reprodução](evaluations/2026-10-29-integracao/README.md). A avaliação inclui autenticação real, SQLite, duas abas, falhas de rede e acessibilidade automatizada; os limites estão no relatório.
