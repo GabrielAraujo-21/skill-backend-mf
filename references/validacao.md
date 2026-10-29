@@ -26,3 +26,7 @@ Usar workspace descartável, sem segredos e sem serviços externos. Registrar ob
 ## Validação dos backends consumidores
 
 Descobrir scripts e dependências reais antes de escolher comandos. Pint/análise estática para código PHP alterado e testes proporcionais; apenas documentação não exige suíte. Integrações, concorrência e drivers precisam de execução específica quando fizerem parte do aceite. Separar desenvolvimento, homologação e produção conforme governança local. Falha de autorização/tenant/dados bloqueia a entrega afetada. Relatar verificações executadas, resultados e cobertura adiada sem converter exemplos em evidências.
+
+## Avaliação executada em 29/10/2026
+
+Consulte o [relatório, evidências e reprodução](../evaluations/2026-10-29/README.md). Ele separa respostas consultivas de testes PHP/Node e documenta correções e limites; não certifica uma aplicação completa nem substitui os testes dos projetos consumidores.
