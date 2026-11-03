@@ -1,0 +1,2 @@
+No security vulnerability advisories found.
+audit exit=0

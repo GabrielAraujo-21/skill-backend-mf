@@ -1,0 +1,24 @@
+PHP 8.4.27 (cli) (built: Oct 28 2026 01:23:53) (NTS)
+plataforma-exit=0
+itens-sem-success=0
+
+   PASS  Tests\Feature\ClientesTest
+  ✓ it recusa acesso sem autenticação                                    4.65s  
+  ✓ it lista somente clientes do próprio tenant, sem expor ids internos  0.92s  
+  ✓ it cria cliente com tenant derivado do usuário                       0.27s  
+  ✓ it rejeita tenant enviado no payload e nome ausente                  0.21s  
+  ✓ it nega alteração entre tenants e preserva o registro                0.20s  
+  ✓ it falha fechado para usuário sem contexto de tenant                 0.13s  
+
+   PASS  Tests\Feature\PadroesLaravel13Test
+  ✓ it usa os padrões endurecidos do esqueleto 13                        0.14s  
+  ✓ it deriva nomes de sessão e cache com hífen                          0.13s  
+  ✓ it inclui PreventRequestForgery no grupo web e mantém VerifyCsrfTok… 0.15s  
+  ✓ it não reconstrói objetos arbitrários lidos do cache de arquivos     0.34s  
+  ✓ it continua guardando arrays no cache de arquivos                    0.23s  
+  ✓ it expõe a exceção em JobAttempted                                   0.24s  
+
+  Tests:    12 passed (27 assertions)
+  Duration: 9.84s
+
+pest-exit=0

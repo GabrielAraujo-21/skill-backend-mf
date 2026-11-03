@@ -1,0 +1,14 @@
+fakerphp/faker              1.24.1  Faker is a PHP library that generates fake data for you.
+larastan/larastan           3.14.0  Larastan - Discover bugs in your code without running it. A phpstan/phpstan ex...
+laravel/framework           13.39.0 The Laravel Framework.
+laravel/pail                1.2.7   Easily delve into your Laravel application's log files directly from the comma...
+laravel/pao                 1.1.5   Agent-optimized output for PHP testing tools
+laravel/pint                1.32.1  An opinionated code formatter for PHP.
+laravel/sanctum             4.3.3   Laravel Sanctum provides a featherweight authentication system for SPAs and si...
+laravel/tinker              3.0.2   Powerful REPL for the Laravel framework.
+mockery/mockery             1.6.15  Mockery is a simple yet flexible PHP mock object framework
+nunomaduro/collision        8.9.5   Cli error handling for console/command-line PHP applications.
+pestphp/pest                4.7.8   The elegant PHP Testing Framework.
+pestphp/pest-plugin-laravel 4.1.0   The Pest Laravel Plugin
+phpunit/phpunit             12.5.33 The PHP Unit Testing framework.
+Laravel Framework 13.39.0
