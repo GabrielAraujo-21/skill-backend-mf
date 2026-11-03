@@ -2,12 +2,12 @@
 name: skill-backend-mf
 description: Criar, revisar e adequar backends Laravel com PHP, conduzindo decisões de arquitetura com o desenvolvedor, preservando contratos existentes e aplicando guardrails de segurança. Usar para padronização de backend, diagnóstico arquitetural ou implantação incremental dessas convenções; não aplicar automaticamente a tarefas exclusivamente frontend.
 metadata:
-  version: "1.2.0"
+  version: "2.0.0"
 ---
 
 # Backend MF
 
-Padronize backends Laravel 12/PHP 8.4 conforme a [especificação 1.2.0](references/especificacao-1.2.0.md). Essa é uma referência, não autorização para atualizar versões, alterar decisões do projeto ou instalar todos os módulos citados.
+Padronize backends Laravel 13 conforme a [especificação 2.0.0](references/especificacao-2.0.0.md). Em projeto novo, recomende PHP 8.5 e admita PHP 8.4 quando hospedagem, imagem ou extensão exigirem. Essa é uma referência, não autorização para atualizar versões, alterar decisões do projeto ou instalar todos os módulos citados: backend existente em Laravel 12 ou outra versão permanece nela até haver escopo aprovado.
 
 ## Entrada e escolha de fluxo
 

@@ -1,0 +1,21 @@
+
+   PASS  Tests\Feature\ClientesTest
+  ✓ it recusa acesso sem autenticação                                                                            0.30s  
+  ✓ it lista somente clientes do próprio tenant, sem expor ids internos                                          0.07s  
+  ✓ it cria cliente com tenant derivado do usuário                                                               0.03s  
+  ✓ it rejeita tenant enviado no payload e nome ausente                                                          0.02s  
+  ✓ it nega alteração entre tenants e preserva o registro                                                        0.02s  
+  ✓ it falha fechado para usuário sem contexto de tenant                                                         0.02s  
+
+   PASS  Tests\Feature\PadroesLaravel13Test
+  ✓ it usa os padrões endurecidos do esqueleto 13                                                                0.02s  
+  ✓ it deriva nomes de sessão e cache com hífen                                                                  0.01s  
+  ✓ it inclui PreventRequestForgery no grupo web e mantém VerifyCsrfToken como alias                             0.01s  
+  ✓ it não reconstrói objetos arbitrários lidos do cache de arquivos                                             0.03s  
+  ✓ it continua guardando arrays no cache de arquivos                                                            0.02s  
+  ✓ it expõe a exceção em JobAttempted                                                                           0.02s  
+
+  Tests:    12 passed (27 assertions)
+  Duration: 0.76s
+
+pest-exit=0

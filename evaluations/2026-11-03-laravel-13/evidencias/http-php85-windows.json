@@ -1,0 +1,118 @@
+{
+    "php": "8.5.12",
+    "sistema": "Windows",
+    "erros_no_log": 0,
+    "aprovados": 18,
+    "total": 18,
+    "resultados": [
+        {
+            "caso": "login sem token CSRF",
+            "esperado": 419,
+            "obtido": 419,
+            "ok": true
+        },
+        {
+            "caso": "login com Sec-Fetch-Site cross-site e sem token",
+            "esperado": 419,
+            "obtido": 419,
+            "ok": true
+        },
+        {
+            "caso": "login com Sec-Fetch-Site same-site e sem token (padrão)",
+            "esperado": 419,
+            "obtido": 419,
+            "ok": true
+        },
+        {
+            "caso": "sanctum/csrf-cookie",
+            "esperado": 204,
+            "obtido": 204,
+            "ok": true
+        },
+        {
+            "caso": "cookie de sessão com hífen",
+            "esperado": "laravel-session",
+            "obtido": "laravel-session",
+            "ok": true
+        },
+        {
+            "caso": "listagem antes do login",
+            "esperado": 401,
+            "obtido": 401,
+            "ok": true
+        },
+        {
+            "caso": "login com X-XSRF-TOKEN",
+            "esperado": 200,
+            "obtido": 200,
+            "ok": true
+        },
+        {
+            "caso": "listagem por sessão stateful",
+            "esperado": 200,
+            "obtido": 200,
+            "ok": true
+        },
+        {
+            "caso": "listagem contém só o tenant 1",
+            "esperado": "Cliente do tenant 1",
+            "obtido": "Cliente do tenant 1",
+            "ok": true
+        },
+        {
+            "caso": "POST API stateful sem token",
+            "esperado": 419,
+            "obtido": 419,
+            "ok": true
+        },
+        {
+            "caso": "POST API stateful com token inválido",
+            "esperado": 419,
+            "obtido": 419,
+            "ok": true
+        },
+        {
+            "caso": "POST API stateful com X-XSRF-TOKEN",
+            "esperado": 201,
+            "obtido": 201,
+            "ok": true
+        },
+        {
+            "caso": "POST API com Sec-Fetch-Site same-origin e sem token",
+            "esperado": 201,
+            "obtido": 201,
+            "ok": true
+        },
+        {
+            "caso": "payload com tenant_id",
+            "esperado": 422,
+            "obtido": 422,
+            "ok": true
+        },
+        {
+            "caso": "logout",
+            "esperado": 204,
+            "obtido": 204,
+            "ok": true
+        },
+        {
+            "caso": "listagem depois do logout",
+            "esperado": 401,
+            "obtido": 401,
+            "ok": true
+        },
+        {
+            "caso": "limite de login persistente entre requisições",
+            "esperado": "422 x4, 429 x3 (o login aprovado antes ocupa 1 de 5)",
+            "obtido": "422,422,422,422,429,429,429",
+            "ok": true
+        },
+        {
+            "caso": "depreciações registradas no log do runtime",
+            "esperado": 0,
+            "obtido": 0,
+            "ok": true
+        }
+    ],
+    "amostra_depreciacoes": []
+}

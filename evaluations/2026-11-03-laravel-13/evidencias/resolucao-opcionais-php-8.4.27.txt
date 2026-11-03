@@ -1,0 +1,20 @@
+== PHP plataforma 8.4.27: resolução completa do lockfile
+Nothing to modify in lock file
+== Opcionais da especificação
+Lock file operations: 21 installs, 3 updates, 1 removal
+  - Locking dedoc/scramble (v0.13.52)
+  - Locking laravel/horizon (v5.50.1)
+  - Locking laravel/reverb (v1.12.0)
+  - Locking spatie/laravel-activitylog (5.1.3)
+  - Locking spatie/laravel-query-builder (7.3.7)
+  - Installing dedoc/scramble (v0.13.52)
+  - Installing laravel/horizon (v5.50.1)
+  - Installing laravel/reverb (v1.12.0)
+  - Installing spatie/laravel-activitylog (5.1.3)
+  - Installing spatie/laravel-query-builder (7.3.7)
+Using version ^5.50 for laravel/horizon
+Using version ^1.12 for laravel/reverb
+Using version ^0.13.52 for dedoc/scramble
+Using version ^7.3 for spatie/laravel-query-builder
+Using version ^5.1 for spatie/laravel-activitylog
+exit=0

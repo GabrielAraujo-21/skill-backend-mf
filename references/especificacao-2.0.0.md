@@ -1,17 +1,19 @@
 # Spec de Convenções de Backend
 
-**Versão:** 1.2.0
-**Data:** 2026-10-29
+**Versão:** 2.0.0
+**Data:** 2026-11-03
 **Status:** Referência consolidada; adoção depende do perfil e das decisões de cada projeto.
 **Escopo:** criação, diagnóstico e adequação incremental de backends Laravel, preservando contratos existentes.
 
-Esta versão substitui a proposta 1.1.0 como referência desta skill. Não revoga ADRs de projetos consumidores. Componentes próprios citados são contratos a localizar ou implementar, não código fornecido pelo pacote. Nenhum projeto modelo foi disponibilizado com a proposta.
+Esta versão substitui a 1.2.0 como referência desta skill: muda a stack de projeto novo para Laravel 13 e registra o que essa versão altera; os demais contratos seguem os da 1.2.0. Não revoga ADRs de projetos consumidores. Componentes próprios citados são contratos a localizar ou implementar, não código fornecido pelo pacote. Nenhum projeto modelo foi disponibilizado com a proposta.
 
 DEVE/NÃO DEVE indicam requisito no perfil aplicável; DEVERIA indica recomendação cujo desvio requer justificativa; PODE indica alternativa. Regras de módulos opcionais só se aplicam após seleção. Instruções do usuário e governança local prevalecem; conflitos materiais devem ser resolvidos explicitamente.
 
 ## 1. Stack e perfis
 
-Referência: Laravel 12, PHP 8.4.x em patch suportado e compatível, Sanctum quando adequado aos clientes; JavaScript nas integrações frontend, sem impor frontend a uma skill de backend. Não atualizar versões existentes automaticamente. Conferir manifests, lockfiles, extensões, ambiente e compatibilidade de dependências.
+Referência de projeto novo: Laravel 13, PHP 8.5.x em patch suportado e compatível (PHP 8.4.x quando hospedagem, imagem ou extensão ainda não oferecerem 8.5), Sanctum quando adequado aos clientes; JavaScript nas integrações frontend, sem impor frontend a uma skill de backend. Não atualizar versões existentes automaticamente: backend em Laravel 12 ou outra versão é preservado até haver escopo aprovado, e a migração segue [adequação existente](projeto-existente.md). Conferir manifests, lockfiles, extensões, ambiente e compatibilidade de dependências.
+
+Laravel 13 declara suporte a PHP 8.3 a 8.5, mas a resolução atual traz Symfony 8, que exige PHP 8.4.1; PHP 8.3 exige resolução própria. PHP 8.5 é recomendado porque tem suporte ativo até 2027-12-31 e de segurança até 2029-12-31, enquanto o suporte ativo do 8.4 termina em 2026-12-31 (segurança até 2028-12-31). A escolha não veio de diferença funcional: o [ensaio de 2026-11-03](../evaluations/2026-11-03-laravel-13/README.md) teve o mesmo resultado nas duas versões. Decisão registrada no projeto prevalece.
 
 Núcleo: contratos HTTP, validação, autorização, persistência, erros seguros, qualidade e documentação. Pest é default de projeto novo; preservar suíte PHPUnit existente quando atende. Pint e Larastan (meta inicial nível 6) com baseline justificada para legado, sem ocultar novos erros.
 
@@ -23,7 +25,7 @@ PostgreSQL, MySQL, SQL Server e SQLite são drivers candidatos. Definir versões
 
 Novo projeto pode usar `backend/` com `app/{Models,Enums,Http,Policies,Services,Actions,Contracts,Repositories,Observers,Events,Jobs,Support}`, `config/`, `database/{migrations,factories,seeders}`, `routes/`, `lang/`, `tests/{Unit,Feature,Arch}`. Criar diretórios somente quando houver responsabilidade real. `Http` contém Controllers, Requests e Resources. `Support/CompatBanco.php` é a localização default da fachada, com namespace `App\Support\CompatBanco`; estratégias maiores podem ficar em subdiretório próprio.
 
-Preservar raiz e organização de projeto existente. Providers novos devem ser registrados conforme o bootstrap efetivo do Laravel. Dockerfiles, stubs e frontend só existem quando requeridos pelo perfil. Não gerar árvores vazias como evidência de implementação.
+Preservar raiz e organização de projeto existente. Providers novos devem ser registrados conforme o bootstrap efetivo do Laravel. Dockerfiles, stubs e frontend só existem quando requeridos pelo perfil. Não gerar árvores vazias como evidência de implementação. O esqueleto Laravel 13 pode trazer `AGENTS.md`, `CLAUDE.md` e `laravel/pao`: arquivos de instrução gerados não são governança do projeto; revisar e adotar somente por decisão.
 
 ## 3. Nomenclatura
 
@@ -57,7 +59,7 @@ JSON com schema de aplicação, limites e queries portáveis. Enums de domínio 
 
 ## 6. Models
 
-Fillable explícito; não usar guarded vazio. Relações tipadas; casts explícitos. Ativar detecção de lazy loading e descarte silencioso fora de produção quando compatível com o projeto. Usar Resources como allowlist; hidden é defesa complementar.
+Fillable explícito; não usar guarded vazio. Relações tipadas; casts explícitos. Ativar detecção de lazy loading e descarte silencioso fora de produção quando compatível com o projeto. Usar Resources como allowlist; hidden é defesa complementar. Laravel 13 aceita `#[Fillable]` e `#[Hidden]` no lugar das propriedades; ambas as formas são explícitas. Instanciar o próprio model durante `boot` passa a lançar `LogicException`.
 
 Traits de identidade, tenancy e auditoria somente quando aplicáveis. UUID em `codigo` pode usar `HasUuids` com `uniqueIds()`; verificar comportamento da versão. Definir route key. Eager loading por caso de uso, com constantes como `RELACIONAMENTOS_LISTA/DETALHE` se úteis. Não exigir relações inexistentes.
 
@@ -73,7 +75,7 @@ Centralizar divergências reais; preferir recursos portáveis do query builder a
 | Grandes conjuntos IN | Limite total de parâmetros, inclusive outros filtros. Vários OR IN na mesma query não reduzem o total. Consultas separadas exigem semântica correta de ordenação, paginação e consistência. |
 | Datas/concatenação/NULL | Unidade e fuso, tratamento de NULL, coerção e ordem estável, com equivalência testada. |
 
-Nenhum identificador SQL vindo do cliente é interpolado sem allowlist. Validação unique acompanha índice, usa tenant confiável e ignora ID obtido do registro autorizado. Constraint do banco é defesa contra concorrência; traduzir colisão esperada sem expor SQL. Reutilização de chave após soft delete depende do domínio, não é requisito universal.
+Nenhum identificador SQL vindo do cliente é interpolado sem allowlist. Validação unique acompanha índice, usa tenant confiável e ignora ID obtido do registro autorizado. Constraint do banco é defesa contra concorrência; traduzir colisão esperada sem expor SQL. Reutilização de chave após soft delete depende do domínio, não é requisito universal. Em Laravel 13, `upsert` exige `uniqueBy` não vazio também em MySQL/MariaDB, e `DELETE` com JOIN, ORDER BY e LIMIT pode lançar `QueryException` onde o banco não suporta a sintaxe, em vez de ignorar as cláusulas.
 
 ## 8. Multi-tenancy opcional
 
@@ -91,7 +93,7 @@ Default novo `/api/v1`; preservar contratos existentes. Usar parâmetro nomeado 
 
 Capacidades possíveis: GET coleção/index; GET input-list; GET detalhe/show; POST store; PUT/PATCH update; PATCH ativar/inativar; DELETE destroy; PATCH restore; DELETE force. Não publicar todas automaticamente. Históricos, logs e eventos de gateway não recebem CRUD mutável genérico.
 
-Status: 200 leitura/alteração e exclusão com envelope; 201 criação; 401 não autenticado; 403 negado; 404 ausente/ocultação conforme política; 409 conflito; 422 entrada inválida; 429 limite; 500 erro interno. 419 é convenção Laravel para falha CSRF/sessão onde aplicável. Se usar 204, não enviar envelope. Preservar semântica de PUT/PATCH e diferenças entre ausência e null.
+Status: 200 leitura/alteração e exclusão com envelope; 201 criação; 401 não autenticado; 403 negado; 404 ausente/ocultação conforme política; 409 conflito; 422 entrada inválida; 429 limite; 500 erro interno. 419 é convenção Laravel para falha CSRF/sessão onde aplicável (403 em `preventRequestForgery(originOnly: true)`). Se usar 204, não enviar envelope. Preservar semântica de PUT/PATCH e diferenças entre ausência e null.
 
 `Route::crud` é extensão própria opcional: deve definir ações habilitadas, binding, middleware, nomes e permissões. Não confundir com comando nativo.
 
@@ -108,6 +110,8 @@ Cache somente quando justificado. Chave inclui aplicação, ambiente, tenant/glo
 TTL inicial de listas 600s ajustável; show sem cache por padrão. Tags só se o driver suportar. Invalidar após commit; declarar dependências de relações. Evitar que leitura concorrente republique dado antigo após flush: usar geração/versionamento de chave ou estratégia equivalente testada quando necessário.
 
 Permissões: invalidação cobre vínculos, perfil/grupo, concessões, revogações e mudanças nas permissões. Adotar expiração de segurança/versionamento. Guardar dados mínimos antes do Resource, não JSON com URLs assinadas. Evitar serializar grafos Eloquent indiscriminadamente. Não armazenar segredos em cache compartilhado sem controles.
+
+O esqueleto Laravel 13 define `cache.serializable_classes=false`: objeto lido do cache volta como `__PHP_Incomplete_Class`. Preferir arrays e escalares; quando objeto for justificado, listar as classes próprias em allowlist, sem liberar qualquer classe. Prefixos e cookie derivados de `APP_NAME` agora usam hífen (`-cache-`, `-database-`, `-session`); em adequação, fixar `CACHE_PREFIX`, `REDIS_PREFIX` e `SESSION_COOKIE` se os nomes anteriores precisarem ser mantidos.
 
 ## 12. Resources
 
@@ -139,7 +143,7 @@ Sincronização de permissões por manifesto de capacidades expostas, não por t
 
 Reverb/Echo quando selecionados. Canais privados por tenant/recurso/registro com autorização equivalente à API. Reavaliar revogação e ciclo de conexão; autorização de inscrição não é garantia eterna. IDs mínimos também podem revelar existência: canais de coleção respeitam visibilidade granular ou usam sinal genérico de invalidação.
 
-Eventos depois do commit, por fila; payload mínimo sem dados sensíveis/URLs. Front recarrega via API. Deduplicar eventos de massa; considerar ordem/versão e reconnect. `ShouldBroadcast` e `ShouldDispatchAfterCommit` conforme versão. Evento websocket não substitui entrega durável de processo crítico.
+Eventos depois do commit, por fila; payload mínimo sem dados sensíveis/URLs. Front recarrega via API. Deduplicar eventos de massa; considerar ordem/versão e reconnect. `ShouldBroadcast` e `ShouldDispatchAfterCommit` conforme versão. Evento websocket não substitui entrega durável de processo crítico. Reverb exige `guzzlehttp/psr7` ^2.6, o que rebaixa Guzzle 8 para 7 na resolução; conferir o efeito antes de instalar.
 
 ## 16. Arquivos opcionais
 
@@ -189,11 +193,13 @@ Escolher driver; Redis/Horizon quando selecionado. Filas alta/default/broadcast/
 
 Jobs dependentes de gravação só após commit. `afterCommit` evita consumo prematuro, mas não fecha a janela banco confirmado/enqueue perdido; efeitos críticos precisam de recuperação durável. Passar tenant e identificadores; limpar contexto. Prever replay autorizado, dead letters/failed jobs e prevenção de duplicação.
 
-Scheduler conforme necessidade: reconciliação, estados de assinatura, pruning e métricas. Definir frequência/fuso por regra; atualização diária não basta para validade que expira em instante exato, que deve ser conferida na operação. onOneServer/withoutOverlapping com backend de lock compartilhado e expiração adequada. Evitar starvation de filas baixas.
+Scheduler conforme necessidade: reconciliação, estados de assinatura, pruning e métricas. Definir frequência/fuso por regra; atualização diária não basta para validade que expira em instante exato, que deve ser conferida na operação. onOneServer/withoutOverlapping com backend de lock compartilhado e expiração adequada. Evitar starvation de filas baixas. Laravel 13 oferece `Queue::route` e atributos como `#[Tries]`, `#[Backoff]` e `#[Timeout]`, sem dispensar a coerência de timeouts. Listeners de `JobAttempted` usam `$exception`, e os de `QueueBusy`, `$connectionName`.
 
 ## 21. Segurança
 
 Aplicar guardrails da skill. Sanctum SPA exige configuração stateful, cookies, CSRF, CORS com origens explícitas e topologia de domínio compatível; token exige abilities/expiração/revogação e policies. Abilities não substituem autorização de negócio. Login/logout, reset, verificação de e-mail e MFA conforme risco e requisitos.
+
+Em Laravel 13, `PreventRequestForgery` substitui `VerifyCsrfToken` e `ValidateCsrfToken` (aliases depreciados); referências diretas, como `withoutMiddleware`, devem usar o novo nome. Ele aceita `Sec-Fetch-Site: same-origin` sem token e recorre ao token nos demais casos. `allowSameSite` e `originOnly` são decisões de topologia a justificar: `same-site` aceito dispensa token entre subdomínios, e `originOnly` remove o cookie `XSRF-TOKEN` usado pelo fluxo Sanctum SPA. O cabeçalho protege navegadores contra requisição forjada; não autentica nem substitui policies. O esqueleto define `session.serialization=json`: não guardar objetos PHP na sessão; em adequação, trocar `php` por `json` invalida as sessões ativas e exige decisão.
 
 Rate limit por identidade/tenant/IP conforme superfície, com limites diferenciados; valores 120/min API, 5/min login e 300/min webhook são propostas, não universais. Configurar proxies confiáveis sem aceitar headers arbitrários; hosts e origens permitidos. TLS e headers adequados; HSTS só com domínio preparado.
 
@@ -245,7 +251,7 @@ Lint/análise proporcionais a código alterado, testes que provem comportamento 
 
 Cobrir sucesso, entrada inválida, acesso negado, ausência de autenticação, tenant cruzado/ausente, relações cruzadas, visibilidade e revogação. Exercitar concorrência, idempotência, rollback, efeitos após commit e falhas externas nos fluxos relevantes. Testes de cache/filas não podem depender apenas de fake para afirmar integração real.
 
-Testes arquiteturais distinguem concretos, bases, interfaces, adapters HTTP, controllers não CRUD e módulos opcionais; evitar regras impossíveis sobre toda pasta. Nenhum teste exige quantidade fixa de artefatos por model. Medida de cobertura (exemplo 80% nas camadas críticas) é objetivo auxiliar, não prova de segurança.
+Testes arquiteturais distinguem concretos, bases, interfaces, adapters HTTP, controllers não CRUD e módulos opcionais; evitar regras impossíveis sobre toda pasta. Nenhum teste exige quantidade fixa de artefatos por model. Medida de cobertura (exemplo 80% nas camadas críticas) é objetivo auxiliar, não prova de segurança. Laravel 13 usa PHPUnit 12 ou Pest 4.
 
 Matriz dos drivers declarados e banco operacional; SQL/constraints/locking exigem evidência nesse banco. Registrar drivers/integrações não testados. Em adequação, adicionar caracterização proporcional e não substituir suíte madura por preferência de framework.
 
@@ -269,7 +275,7 @@ Nova entidade: confirmar se é CRUD; relações e tenant; permissões efetivas; 
 
 ## 31. Histórico e decisões por projeto
 
-1.0.0 (2026-09-27): proposta inicial. 1.1.0 (2026-09-27): containers, arquivos/CDN e compatibilidade SQL Server ampliados. 1.2.0 (2026-10-29): consolidação revisada; fluxo consultivo, perfis opcionais, adequação incremental, guardrails; correção de auditoria/commit, bypass de tenant, CNPJ, parâmetros SQL, fronteiras HTTP, healthchecks, geração sem mutação, dinheiro/concorrência, dados/backup, contratos e validações proporcionais.
+1.0.0 (2026-09-27): proposta inicial. 1.1.0 (2026-09-27): containers, arquivos/CDN e compatibilidade SQL Server ampliados. 1.2.0 (2026-10-29): consolidação revisada; fluxo consultivo, perfis opcionais, adequação incremental, guardrails; correção de auditoria/commit, bypass de tenant, CNPJ, parâmetros SQL, fronteiras HTTP, healthchecks, geração sem mutação, dinheiro/concorrência, dados/backup, contratos e validações proporcionais. 2.0.0 (2026-11-03): referência de projeto novo passa a Laravel 13 com PHP 8.5 recomendado e 8.4 admitido; registra `PreventRequestForgery`, serialização de sessão e cache, nomes derivados, mudanças de filas e bancos; legado segue sem migração automática.
 
 Decisões antes abertas (grupo/perfil, Sanctum, métodos de cobrança, DTOs, banco, imagens privadas) passam a ser escolhas contextuais registradas por projeto. `destroy` é default novo; contratos existentes mantidos. Configuração de integração por ambiente é default proposto. Não converter escolhas em obrigação universal.
 
@@ -277,10 +283,14 @@ Decisões antes abertas (grupo/perfil, Sanctum, métodos de cobrança, DTOs, ban
 
 Consultar a documentação da versão instalada ao implementar; links são referências, não prova de compatibilidade de todos os pacotes.
 
-- Laravel 12 Eloquent (events, observers, scopes): https://laravel.com/docs/12.x/eloquent
-- Laravel 12 filas (commit, timeout, retry_after): https://laravel.com/docs/12.x/queues
-- Laravel 12 autorização: https://laravel.com/docs/12.x/authorization
-- Laravel 12 Sanctum: https://laravel.com/docs/12.x/sanctum
+- Laravel 13, guia de upgrade: https://laravel.com/docs/13.x/upgrade
+- Laravel 13, versões e suporte: https://laravel.com/docs/13.x/releases
+- Laravel 13, proteção CSRF: https://laravel.com/docs/13.x/csrf
+- Laravel 13 Eloquent (events, observers, scopes): https://laravel.com/docs/13.x/eloquent
+- Laravel 13 filas (commit, timeout, retry_after): https://laravel.com/docs/13.x/queues
+- Laravel 13 autorização: https://laravel.com/docs/13.x/authorization
+- Laravel 13 Sanctum: https://laravel.com/docs/13.x/sanctum
+- PHP, versões suportadas: https://www.php.net/supported-versions.php
 - Microsoft, limites SQL Server: https://learn.microsoft.com/en-us/sql/sql-server/maximum-capacity-specifications-for-sql-server
 - Receita Federal, CNPJ alfanumérico: https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/cnpj-alfanumerico
 - Efí, webhooks Pix: https://dev.efipay.com.br/docs/api-pix/webhooks/

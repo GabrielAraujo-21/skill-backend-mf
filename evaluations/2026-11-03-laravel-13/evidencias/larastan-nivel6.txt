@@ -1,0 +1,2 @@
+{"tool":"phpstan","result":"passed","errors":0}
+larastan exit=0

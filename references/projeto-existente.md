@@ -23,6 +23,7 @@ Planejar por fluxo ou módulo, preservando API, dados e integração. Adicionar 
 - Autorização: preservar slugs contratados; mapear concessões, revogações e poderes administrativos; não conceder tudo ao adaptar perfis.
 - Abstrações: admitir coexistência temporária de padrões; não refatorar todo o sistema para completar uma pequena tarefa.
 - Infraestrutura: preservar destino e gates vigentes. Melhorias propostas não autorizam migração de hosting nem deploy.
+- Versão: Laravel 12 ou anterior não é defeito a corrigir nesta adequação. Atualizar para Laravel 13 é frente própria, com escopo aprovado e baseline de testes. Revisar ao menos: dependências (`phpunit` 12, `pest` 4, `tinker` 3), referências a `VerifyCsrfToken`/`ValidateCsrfToken`, objetos no cache (`serializable_classes`), `session.serialization` (trocar para `json` invalida sessões), nomes derivados de cache/sessão, `upsert` sem `uniqueBy`, listeners de `JobAttempted`/`QueueBusy` e helpers globais `array_first`/`array_last` diante de `symfony/polyfill-php85`. Fonte: https://laravel.com/docs/13.x/upgrade.
 
 ## Conclusão
 

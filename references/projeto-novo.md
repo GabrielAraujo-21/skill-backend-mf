@@ -2,7 +2,7 @@
 
 1. Confirmar raiz desejada e ausência de projeto existente; ler regras locais sem acessar segredos. `backend/` é default, não imposição.
 2. Resolver decisões consultivas para a primeira etapa: escopo, tenancy, banco, clientes e autenticação. Não gerar schema dependente de decisão pendente.
-3. Registrar perfil: núcleo obrigatório e módulos opcionais selecionados. Fixar versões compatíveis e política de atualizações; Laravel 12/PHP 8.4 são referências desta versão.
+3. Registrar perfil: núcleo obrigatório e módulos opcionais selecionados. Fixar versões compatíveis e política de atualizações; Laravel 13 e PHP 8.5 são referências desta versão, com PHP 8.4 admitido quando hospedagem, imagem ou extensão exigirem. Conferir o esqueleto gerado: arquivos de instrução para agentes (`AGENTS.md`, `CLAUDE.md`) não viram governança sem decisão.
 4. Procurar pacote interno/starter existente e verificar sua versão, contratos e testes. Se não existir, indicar componentes que precisarão ser implementados; não afirmar que foram copiados de um modelo inexistente.
 5. Apresentar plano incremental com mudanças, verificações e riscos. Usar autorização já existente quando suficiente.
 6. Construir primeiro uma fatia funcional representativa: rota, request, autorização, caso de uso, persistência e resource. Implementar apenas as abstrações justificadas por essa fatia. Controllers não são obrigatoriamente CRUD.

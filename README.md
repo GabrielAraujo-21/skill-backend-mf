@@ -1,11 +1,11 @@
-# Backend MF — skill 1.2.0
+# Backend MF — skill 2.0.0
 
-Skill consultiva para criar, diagnosticar e adequar backends Laravel 12/PHP 8.4, preservando contratos existentes e conduzindo decisões de arquitetura com o desenvolvedor.
+Skill consultiva para criar, diagnosticar e adequar backends Laravel 13 (PHP 8.5 recomendado, 8.4 admitido), preservando contratos existentes e conduzindo decisões de arquitetura com o desenvolvedor.
 
 ## Conteúdo
 
 - [Instruções da skill](SKILL.md)
-- [Especificação consolidada 1.2.0](references/especificacao-1.2.0.md)
+- [Especificação consolidada 2.0.0](references/especificacao-2.0.0.md)
 - [Guardrails e decisões consultivas](references/seguranca-consulta.md)
 - [Projeto novo](references/projeto-novo.md)
 - [Projeto existente](references/projeto-existente.md)
@@ -103,7 +103,7 @@ Os exemplos abaixo são mensagens para o chat do Codex, não comandos de termina
 ### Criar um backend novo
 
 ```text
-Use $skill-backend-mf para criar um backend Laravel 12/PHP 8.4 em backend/.
+Use $skill-backend-mf para criar um backend Laravel 13/PHP 8.5 em backend/.
 O produto será um sistema de gestão de serviços. Antes de implementar,
 apresente as decisões necessárias, as opções e sua recomendação para cada uma,
 incluindo multi-tenancy, banco e autenticação. Aguarde minhas escolhas para
@@ -183,7 +183,7 @@ No Linux/macOS, execute `git -C "$HOME/.agents/skills/skill-backend-mf" status -
 
 Para cópia por projeto, atualize a origem, compare os arquivos instalados e incorpore o diff revisado no projeto. Não sobrescreva personalizações sem conferência.
 
-A tag `v1.2.0` preserva o lançamento original. Para fixar esse conteúdo, use `git checkout --detach v1.2.0` em um clone limpo; ele não acompanhará `main` e não incluirá correções documentais posteriores à tag. Não movemos tags já publicadas para atualizar o README.
+A skill 2.0.0 muda a referência de projeto novo para Laravel 13 e não migra projetos existentes. A tag `v1.2.0` preserva o lançamento com referência Laravel 12/PHP 8.4. Para fixar esse conteúdo, use `git checkout --detach v1.2.0` em um clone limpo; ele não acompanhará `main` e não incluirá correções documentais posteriores à tag. Não movemos tags já publicadas para atualizar o README.
 
 ## Solução de problemas
 
@@ -213,3 +213,9 @@ Consulte o [relatório, evidências e reprodução](evaluations/2026-10-29/READM
 ## Validação integrada Laravel e Vue/Vuetify
 
 [Projetos completos, dez testes Chromium, correções e reprodução](evaluations/2026-10-29-integracao/README.md). A avaliação inclui autenticação real, SQLite, duas abas, falhas de rede e acessibilidade automatizada; os limites estão no relatório.
+
+Esses dois laboratórios de 29/10/2026 permanecem em Laravel 12 como registro histórico.
+
+## Validação Laravel 13 executada em 03/11/2026
+
+[Projeto mínimo, comandos, resultados em PHP 8.4 e 8.5 e limites](evaluations/2026-11-03-laravel-13/README.md). Inclui a evidência da recomendação de PHP.
